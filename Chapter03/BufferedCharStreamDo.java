@@ -12,28 +12,28 @@ public class BufferedCharStreamDo
 		System.out.println("Source Name:"+sourFile);
 		System.out.println("Target Name:"+destFile);
 		
-	    try
-	    {
-	    	BufferedReader br = null;
-	    	BufferedWriter bw = null;
-	    	
-	    	br = new BufferedReader(new FileReader(sourFile));
-	    	bw = new BufferedWriter(new FileWriter(destFile));
-	    	
-	    	while((i = br.read()) != -1) {
-	    		bw.write(i);
-	    		
-	    		len += 1;
-	    		System.out.println("Read data[" + (char)i + "," + len + "]");
-	    	}
-	    	
-	    	br.close();
-	    	bw.close();
-	    	System.out.println("Finished");
+	    	try
+	    	{
+			BufferedReader br = null;
+			BufferedWriter bw = null;
+
+			br = new BufferedReader(new FileReader(sourFile));
+			bw = new BufferedWriter(new FileWriter(destFile));
+
+			while((i = br.read()) != -1) {
+				bw.write(i);
+
+				len += 1;
+				System.out.println("Read data[" + (char)i + "," + len + "]");
+			}
+
+			br.close();
+			bw.close();
+			System.out.println("Finished");
 		}
-		catch(IOException e)
+		catch(IOException ie)
 		{
-			System.out.println(e);
+			System.out.println(ie);
 		}
 	}
 }
