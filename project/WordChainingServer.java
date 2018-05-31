@@ -55,14 +55,9 @@ public class WordChainingServer implements Runnable {
 				System.out.println("작성자: "+clientID);
 			} else {
 				System.out.println("메시지 받는 사람: "+clients[i].getClientID());
-				if (inputLine.equals("BYE")) {
-					clients[i].out.println(clientID + "님이 게임을 종료했습니다.");
-				}
-				else {
-					if (this.getPlayerState()) {
-						clients[i].out.println(clientID + "님이 입력한 단어 : " + inputLine);
-						clients[i].out.println("현재까지의 단어 : " + wordList);
-					}
+				if (this.getPlayerState()) {
+					clients[i].out.println(clientID + "님이 입력한 단어 : " + inputLine);
+					clients[i].out.println("현재까지의 단어 : " + wordList);
 				}
 			}
 	}
@@ -165,9 +160,11 @@ class WordChaingServerRunnable implements Runnable {
 			final String readyMsg = "님이 READY를 눌렀습니다.";
 			final String unReadyMsg = "님이 UNREADY를 눌렀습니다.";
 			final String startMsg = "끝말잇기 게임을 시작합니다.";
+			final String terminateMsg = "님이 게임을 종료했습니다.";
 
 			while ((inputLine = in.readLine()) != null) {
 				if (inputLine.equalsIgnoreCase("Bye.")) {
+					chatServer.putClient(getClientID(), getClientID() + terminateMsg);
 					chatServer.delClient(getClientID());
 					break;
 				}
